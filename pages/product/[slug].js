@@ -48,7 +48,7 @@ export default function ProductDetails() {
       />
       <div className="flex flex-col w-[280px] sm:w-[400px] xl:w-[25rem]">
         <h1 className="text-4xl text-[#5a5a5a] mb-2">{title}</h1>
-        <p className="text-2xl font-bold text-[#3c3c3c] mb-5">€{price}</p>
+        <p className="text-2xl font-bold text-[#3c3c3c] mb-5">{price}€</p>
         <p className="text-[#ababab] mb-14">{description}</p>
         <div className="flex mb-10 items-center">
           <p className="mr-28 text-lg font-semibold">Quantity</p>

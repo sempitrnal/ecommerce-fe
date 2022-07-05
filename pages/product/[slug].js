@@ -7,7 +7,7 @@ import { FaPlus, FaMinus } from "react-icons/fa";
 import { ClipLoader } from "react-spinners";
 import { motion, AnimatePresence } from "framer-motion";
 export default function ProductDetails() {
-  const { qty, qtyPlus, qtyMinus, cartItems, onAdd } = useStateContext();
+  const { qty, qtyPlus, qtyMinus, onAdd } = useStateContext();
 
   const { query } = useRouter();
   const [results] = useQuery({
@@ -25,7 +25,8 @@ export default function ProductDetails() {
     );
   if (error) return <p>oh shite {error.message}</p>;
 
-  const { title, price, image, description } = data.products.data[0].attributes;
+  const { title, price, image, description, slug } =
+    data.products.data[0].attributes;
   const { large, medium, small, thumbnail } = image.data.attributes.formats;
 
   //motion variants
@@ -43,7 +44,7 @@ export default function ProductDetails() {
       initial="hidden"
       animate="show"
       exit="hidden"
-      className="h-screen flex flex-col lg:flex-row justify-center items-center my-20 sm:my-40 lg:my-0 gap-14"
+      className="flex flex-col items-center justify-center h-screen my-20 lg:flex-row sm:my-40 lg:my-0 gap-14"
     >
       <img
         className="rounded-md w-[280px] sm:w-[400px] xl:[500px]"
@@ -54,9 +55,9 @@ export default function ProductDetails() {
         <h1 className="text-4xl text-[#5a5a5a] mb-2">{title}</h1>
         <p className="text-2xl font-bold text-[#3c3c3c] mb-5">{price}€</p>
         <p className="text-[#ababab] mb-14">{description}</p>
-        <div className="flex mb-10 items-center">
-          <p className="mr-28 text-lg font-semibold">Quantity</p>
-          <div className="flex gap-10 items-center ">
+        <div className="flex items-center mb-10">
+          <p className="text-lg font-semibold mr-28">Quantity</p>
+          <div className="flex items-center gap-10 ">
             <FaMinus
               onClick={qtyMinus}
               className={`transition-colors duration-500 translate-y-[10%] text-sm 
@@ -75,7 +76,7 @@ export default function ProductDetails() {
           </div>
         </div>
         <button
-          className="bg-gray-200 hover:shadow-md transition-all duration-300 p-2 rounded-md"
+          className="p-2 transition-all duration-300 bg-gray-200 rounded-md hover:shadow-md"
           onClick={() => onAdd(data.products.data[0].attributes, qty)}
         >
           Add to cart

@@ -23,27 +23,27 @@ export default function Home() {
 
   if (error) return <p>oh shite {error.message}</p>;
   const products = data.products.data;
-  console.log(products);
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 50 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.3 }}
-    >
+    <div>
       <Head>
         <title>hello world</title>
         <meta name="description" content="" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Nav />
-      <main className="h-screen mt-[15rem]">
-        <div className="grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] justify-center  gap-7 w-[80%] mx-auto mb-10">
+
+      <motion.main
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.3 }}
+        className="h-screen mt-[5rem]"
+      >
+        <div className="grid grid-cols-[repeat(auto-fit,minmax(220px,1fr))] gap-8  w-[80%] mx-auto mb-10">
           {products.map((e) => (
             <Product key={e.attributes.slug} product={e} />
           ))}
         </div>
-      </main>
-    </motion.div>
+      </motion.main>
+    </div>
   );
 }

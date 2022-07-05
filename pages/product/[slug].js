@@ -1,10 +1,14 @@
 import { GET_PRODUCT_QUERY } from "../../lib/query";
 import { useQuery } from "urql";
 import { useRouter } from "next/router";
+import { useStateContext } from "../../lib/context";
+//icons and motion
 import { FaPlus, FaMinus } from "react-icons/fa";
 import { ClipLoader } from "react-spinners";
 import { motion, AnimatePresence } from "framer-motion";
 export default function ProductDetails() {
+  const { qty, qtyPlus, qtyMinus, cartItems, onAdd } = useStateContext();
+
   const { query } = useRouter();
   const [results] = useQuery({
     query: GET_PRODUCT_QUERY,
@@ -14,7 +18,7 @@ export default function ProductDetails() {
   if (fetching)
     return (
       <AnimatePresence>
-        <motion.div className="h-screen justify-center items-center flex">
+        <motion.div className="min-h-[20vh] justify-center items-center flex">
           <ClipLoader />
         </motion.div>
       </AnimatePresence>
@@ -53,16 +57,27 @@ export default function ProductDetails() {
         <div className="flex mb-10 items-center">
           <p className="mr-28 text-lg font-semibold">Quantity</p>
           <div className="flex gap-10 items-center ">
-            <button>
-              <FaMinus className="transition-colors duration-500 translate-y-[10%] text-sm text-[#232323] hover:text-[#4f4f4f] " />
-            </button>
-            <p className="text-2xl">0</p>
-            <button>
+            <FaMinus
+              onClick={qtyMinus}
+              className={`transition-colors duration-500 translate-y-[10%] text-sm 
+                ${
+                  qty === 1
+                    ? "text-gray-200"
+                    : "text-[#232323] hover:text-[#4f4f4f] cursor-pointer"
+                }
+                `}
+            />
+
+            <p className="text-2xl w-[3rem] text-center">{qty}</p>
+            <button onClick={qtyPlus}>
               <FaPlus className="transition-colors duration-500 translate-y-[10%] text-sm text-[#1d1d1d]  hover:text-[#4f4f4f]" />
             </button>
           </div>
         </div>
-        <button className="bg-gray-200 hover:shadow-md transition-all duration-300 p-2 rounded-md">
+        <button
+          className="bg-gray-200 hover:shadow-md transition-all duration-300 p-2 rounded-md"
+          onClick={() => onAdd(data.products.data[0].attributes, qty)}
+        >
           Add to cart
         </button>
       </div>

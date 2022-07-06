@@ -8,7 +8,7 @@ const CartItem = ({ image, title, price, quantity, product }) => {
   return (
     <motion.div
       layout
-      exit={{ opacity: 0 }}
+      exit={{ opacity: 0, x: 300 }}
       className="flex items-center justify-between w-full  mb-7 bg-white p-[2rem_2rem] rounded-lg"
     >
       <img

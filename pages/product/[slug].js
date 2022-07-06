@@ -5,9 +5,11 @@ import { useStateContext } from "../../lib/context";
 //icons and motion
 import { FaPlus, FaMinus } from "react-icons/fa";
 import { ClipLoader } from "react-spinners";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, AnimateSharedLayout } from "framer-motion";
+import ProductMedia from "../../components/ProductMedia";
+import ProductMediaModal from "../../components/ProductMediaModal";
 export default function ProductDetails() {
-  const { qty, qtyPlus, qtyMinus, onAdd } = useStateContext();
+  const { qty, qtyPlus, qtyMinus, onAdd, productMedia } = useStateContext();
 
   const { query } = useRouter();
   const [results] = useQuery({
@@ -15,6 +17,7 @@ export default function ProductDetails() {
     variables: { slug: query.slug },
   });
   const { data, fetching, error } = results;
+  console.log(data);
   if (fetching)
     return (
       <AnimatePresence>
@@ -25,9 +28,10 @@ export default function ProductDetails() {
     );
   if (error) return <p>oh shite {error.message}</p>;
 
-  const { title, price, image, description, slug } =
+  const { title, price, image, description, slug, media } =
     data.products.data[0].attributes;
   const { large, medium, small, thumbnail } = image.data.attributes.formats;
+  const prodMedia = media.data;
 
   //motion variants
   const fadeIn = {
@@ -39,49 +43,66 @@ export default function ProductDetails() {
     },
   };
   return (
-    <motion.div
-      variants={fadeIn}
-      initial="hidden"
-      animate="show"
-      exit="hidden"
-      className="flex flex-col items-center justify-center h-screen my-20 lg:flex-row sm:my-40 lg:my-0 gap-14"
-    >
-      <img
-        className="rounded-md w-[280px] sm:w-[400px] xl:[500px]"
-        src={medium.url}
-        alt={title}
-      />
-      <div className="flex flex-col w-[280px] sm:w-[400px] xl:w-[25rem]">
-        <h1 className="text-4xl text-[#5a5a5a] mb-2">{title}</h1>
-        <p className="text-2xl font-bold text-[#3c3c3c] mb-5">{price}€</p>
-        <p className="text-[#ababab] mb-14">{description}</p>
-        <div className="flex items-center mb-10">
-          <p className="text-lg font-semibold mr-28">Quantity</p>
-          <div className="flex items-center gap-10 ">
-            <FaMinus
-              onClick={qtyMinus}
-              className={`transition-colors duration-500 translate-y-[10%] text-sm 
-                ${
-                  qty === 1
-                    ? "text-gray-200"
-                    : "text-[#232323] hover:text-[#4f4f4f] cursor-pointer"
-                }
-                `}
-            />
-
-            <p className="text-2xl w-[3rem] text-center">{qty}</p>
-            <button onClick={qtyPlus}>
-              <FaPlus className="transition-colors duration-500 translate-y-[10%] text-sm text-[#1d1d1d]  hover:text-[#4f4f4f]" />
-            </button>
+    <motion.div>
+      <motion.div
+        variants={fadeIn}
+        initial="hidden"
+        animate="show"
+        exit="hidden"
+        className="flex flex-col items-center justify-center h-screen my-20 lg:flex-row sm:my-40 lg:my-0 gap-14"
+      >
+        <img
+          className="rounded-md w-[280px] sm:w-[400px] xl:[500px]"
+          src={medium ? medium.url : small.url}
+          alt={title}
+        />
+        <div className="flex flex-col w-[280px] sm:w-[400px] xl:w-[25rem]">
+          <h1 className="text-4xl text-[#5a5a5a] mb-2">{title}</h1>
+          <p className="text-2xl font-bold text-[#3c3c3c] mb-5">{price}€</p>
+          <p className="text-[#ababab] mb-14">{description}</p>
+          <div className="flex items-center mb-10">
+            <p className="text-lg font-semibold mr-28">Quantity</p>
+            <div className="flex items-center gap-10 ">
+              <FaMinus
+                onClick={qtyMinus}
+                className={`transition-colors duration-500 translate-y-[10%] text-sm
+                  ${
+                    qty === 1
+                      ? "text-gray-200"
+                      : "text-[#232323] hover:text-[#4f4f4f] cursor-pointer"
+                  }
+                  `}
+              />
+              <p className="text-2xl w-[3rem] text-center">{qty}</p>
+              <button onClick={qtyPlus}>
+                <FaPlus className="transition-colors duration-500 translate-y-[10%] text-sm text-[#1d1d1d]  hover:text-[#4f4f4f]" />
+              </button>
+            </div>
           </div>
+          <button
+            className="p-2 transition-all duration-300 bg-gray-200 rounded-md hover:shadow-md"
+            onClick={() => onAdd(data.products.data[0].attributes, qty)}
+          >
+            Add to cart
+          </button>
         </div>
-        <button
-          className="p-2 transition-all duration-300 bg-gray-200 rounded-md hover:shadow-md"
-          onClick={() => onAdd(data.products.data[0].attributes, qty)}
-        >
-          Add to cart
-        </button>
-      </div>
+      </motion.div>
+      <AnimateSharedLayout>
+        <AnimatePresence>
+          {productMedia.isOpen && <ProductMediaModal />}
+        </AnimatePresence>
+        <div className="flex justify-center w-screen gap-3">
+          {prodMedia.map((e) => {
+            return (
+              <ProductMedia
+                hash={e.attributes.formats.small.hash}
+                key={e.attributes.formats.small.hash}
+                url={e.attributes.formats.small.url}
+              />
+            );
+          })}
+        </div>
+      </AnimateSharedLayout>
     </motion.div>
   );
 }

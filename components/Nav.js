@@ -21,7 +21,7 @@ const Nav = () => {
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             exit={{ scale: 0 }}
-            className="absolute w-3 h-3 rounded-[50%] bg-red-500 right-1 top-1 flex justify-center items-center  p-[.4rem]"
+            className="cart__quantity"
           >
             <p className="text-[.44rem] text-white">{getTotalQuantity()}</p>
           </motion.div>

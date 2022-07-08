@@ -12,10 +12,7 @@ export default function Home() {
   if (fetching)
     return (
       <AnimatePresence>
-        <motion.div
-          exit={{ opacity: 0 }}
-          className="h-screen justify-center items-center flex"
-        >
+        <motion.div exit={{ opacity: 0 }} className="center">
           <ClipLoader />
         </motion.div>
       </AnimatePresence>
@@ -38,7 +35,7 @@ export default function Home() {
         transition={{ duration: 0.3 }}
         className="h-screen mt-[5rem]"
       >
-        <div className="grid grid-cols-[repeat(auto-fit,minmax(220px,1fr))] gap-8  w-[80%] mx-auto mb-10">
+        <div className="product__grid">
           {products.map((e) => (
             <Product key={e.attributes.slug} product={e} />
           ))}

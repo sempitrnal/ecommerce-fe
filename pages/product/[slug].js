@@ -21,7 +21,7 @@ export default function ProductDetails() {
   if (fetching)
     return (
       <AnimatePresence>
-        <motion.div className="min-h-[20vh] justify-center items-center flex">
+        <motion.div className="center">
           <ClipLoader />
         </motion.div>
       </AnimatePresence>
@@ -49,7 +49,7 @@ export default function ProductDetails() {
         initial="hidden"
         animate="show"
         exit="hidden"
-        className="flex flex-col items-center justify-center h-screen my-20 lg:flex-row sm:my-40 lg:my-0 gap-14"
+        className="product__details"
       >
         <img
           className="rounded-md w-[280px] sm:w-[400px] xl:[500px]"
@@ -58,7 +58,7 @@ export default function ProductDetails() {
         />
         <div className="flex flex-col w-[280px] sm:w-[400px] xl:w-[25rem]">
           <h1 className="text-4xl text-[#5a5a5a] mb-2">{title}</h1>
-          <p className="text-2xl font-bold text-[#3c3c3c] mb-5">{price}€</p>
+          <p className="text-2xl font-bold text-[#3c3c3c] mb-5">₱ {price}</p>
           <p className="text-[#ababab] mb-14">{description}</p>
           <div className="flex items-center mb-10">
             <p className="text-lg font-semibold mr-28">Quantity</p>
@@ -75,12 +75,12 @@ export default function ProductDetails() {
               />
               <p className="text-2xl w-[3rem] text-center">{qty}</p>
               <button onClick={qtyPlus}>
-                <FaPlus className="transition-colors duration-500 translate-y-[10%] text-sm text-[#1d1d1d]  hover:text-[#4f4f4f]" />
+                <FaPlus className="plus__quantity" />
               </button>
             </div>
           </div>
           <button
-            className="p-2 transition-all duration-300 bg-gray-200 rounded-md hover:shadow-md"
+            className="add-to-cart"
             onClick={() => onAdd(data.products.data[0].attributes, qty)}
           >
             Add to cart

@@ -25,11 +25,14 @@ export default async function handler(req, res) {
               },
               unit_amount: e.price * 100,
             },
+            adjustable_quantity: {
+              enabled: true,
+            },
             quantity: e.quantity,
           };
         }),
         success_url: `${req.headers.origin}/success`,
-        cancel_url: `${req.headers.origin}/cancelled`,
+        cancel_url: `${req.headers.origin}/`,
       });
       res.status(200).json(session);
     } catch (error) {

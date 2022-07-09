@@ -16,6 +16,7 @@ a {
 
 * {
   box-sizing: border-box;
+  color: #333;
 }
 
 @layer components {
@@ -57,5 +58,41 @@ a {
   }
   .cart__subtotal {
     @apply font-semibold mr-3 text-sm text-[#fff];
+  }
+  .success__page {
+    @apply h-[87vh] w-full flex justify-center items-center;
+  }
+  .success__wrapper {
+    @apply rounded-md shadow-lg flex flex-col items-center py-10 px-5 mx-5 md:px-32 mt-32 md:mt-5;
+  }
+  .success__message {
+    @apply mb-2 text-xl lg:text-3xl text-center;
+  }
+  .success__confirmationMessage {
+    @apply text-center mb-10 text-[#ababab];
+  }
+  .success__email {
+    @apply font-semibold;
+  }
+  .success__customerdeets {
+    @apply self-start  mb-10 w-full;
+  }
+  .success__title {
+    @apply text-lg font-semibold mb-3;
+  }
+  .success__text {
+    @apply mb-10 text-gray-500;
+  }
+  .success__product_wrapper {
+    @apply mb-10;
+  }
+  .success__products {
+    @apply flex justify-between items-center text-xs mb-5;
+  }
+  .success__total {
+    @apply flex justify-center;
+  }
+  .success__continue {
+    @apply flex items-center gap-3 justify-center text-white bg-[#333] py-2 px-4  rounded-lg hover:bg-[#2c2c2ce6] transition-all duration-300 hover:translate-x-[-2px];
   }
 }

@@ -33,11 +33,14 @@ const User = () => {
             transition={{
               type: "spring",
               damping: 20,
-              stiffness: 120,
+              stiffness: 130,
             }}
             className="absolute p-3 right-[10.5rem] bg-white shadow-[0px_0px_10px_#00000024] rounded-lg text-sm"
           >
-            <div className="flex  p-1 px-3 cursor-pointer hover:bg-gray-50 mb-1 transition-all duration-300 rounded-md">
+            <div
+              className="flex  p-1 px-3 cursor-pointer hover:bg-gray-50 mb-1 transition-all duration-300 rounded-md"
+              onClick={() => route.push("/profile")}
+            >
               <img
                 src={user.picture}
                 alt=""

@@ -4,6 +4,7 @@ import { AiOutlineShoppingCart } from "react-icons/ai";
 import { useStateContext } from "../lib/context";
 import { AnimatePresence, motion } from "framer-motion";
 import User from "./User";
+import Cart from "./Cart";
 const Nav = () => {
   const {
     showCart,
@@ -23,11 +24,12 @@ const Nav = () => {
       className="sticky z-10 top-0 right-0 left-0 flex justify-between items-center px-[5rem] py-[1.5rem] bg-white shadow-lg"
       onClick={openProfileDiv ? (e) => toggle(e) : null}
     >
+      {showCart && <Cart />}
       <Link href={"/"}>bo</Link>
       <div className="flex items-center gap-5">
         <User />
         <button
-          className="relative p-2"
+          className="relative p-2 hover:text-red-700;"
           onClick={() => {
             setShowCart(true);
             document.body.style.overflow = "hidden";

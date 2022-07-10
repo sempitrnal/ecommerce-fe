@@ -1,35 +1,51 @@
 import Link from "next/link";
-
 import { AiOutlineShoppingCart } from "react-icons/ai";
-import Cart from "./Cart";
+
 import { useStateContext } from "../lib/context";
 import { AnimatePresence, motion } from "framer-motion";
+import User from "./User";
 const Nav = () => {
-  const { showCart, setShowCart, getTotalQuantity } = useStateContext();
+  const {
+    showCart,
+    setShowCart,
+    getTotalQuantity,
+    toggleProfileDiv,
+    openProfileDiv,
+  } = useStateContext();
+
+  const toggle = (e) => {
+    if (!e.target.classList.contains("profileDiv")) {
+      toggleProfileDiv();
+    }
+  };
   return (
-    <nav className="sticky z-10 top-0 right-0 left-0 flex justify-between items-center px-[5rem] py-[1.5rem] bg-white shadow-lg">
+    <nav
+      className="sticky z-10 top-0 right-0 left-0 flex justify-between items-center px-[5rem] py-[1.5rem] bg-white shadow-lg"
+      onClick={openProfileDiv ? (e) => toggle(e) : null}
+    >
       <Link href={"/"}>bo</Link>
-      <button
-        className="relative p-2"
-        onClick={() => {
-          setShowCart(true);
-          document.body.style.overflow = "hidden";
-        }}
-      >
-        {getTotalQuantity() > 0 && (
-          <motion.div
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            exit={{ scale: 0 }}
-            className="cart__quantity"
-          >
-            <p className="text-[.44rem] text-white">{getTotalQuantity()}</p>
-          </motion.div>
-        )}
-        <AiOutlineShoppingCart className="text-2xl cursor-pointer hover:text-[#a4a8cc] transition-colors duration-200" />
-      </button>
-      <p className="lg:hidden">burger</p>
-      <AnimatePresence>{showCart && <Cart />}</AnimatePresence>
+      <div className="flex items-center gap-5">
+        <User />
+        <button
+          className="relative p-2"
+          onClick={() => {
+            setShowCart(true);
+            document.body.style.overflow = "hidden";
+          }}
+        >
+          {getTotalQuantity() > 0 && (
+            <motion.div
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              exit={{ scale: 0 }}
+              className="cart__quantity"
+            >
+              <p className="text-[.44rem] text-white">{getTotalQuantity()}</p>
+            </motion.div>
+          )}
+          <AiOutlineShoppingCart className="text-2xl cursor-pointer hover:text-[#a4a8cc] transition-colors duration-200" />
+        </button>
+      </div>
     </nav>
   );
 };

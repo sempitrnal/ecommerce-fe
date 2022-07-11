@@ -1,12 +1,13 @@
 import { useStateContext } from "../lib/context";
-import Image from "next/image";
+import { GrClose } from "react-icons/gr";
 import { AnimatePresence, motion } from "framer-motion";
 import CartItem from "./CartItem";
 
 import { FaArrowRight } from "react-icons/fa";
 import getStripe from "../lib/getStripe";
 function Cart() {
-  const { cartItems, setShowCart, getTotalPrice } = useStateContext();
+  const { cartItems, setShowCart, subtotal } = useStateContext();
+
   const toggleCart = (e) => {
     if (e.target.classList.contains("backdrop")) {
       setShowCart(false);
@@ -80,7 +81,7 @@ function Cart() {
             >
               <p>
                 <span className="cart__subtotal">Subtotal</span>
-                {getTotalPrice()} €
+                {subtotal}
               </p>
               <button
                 className="cart-summary__wrapper"

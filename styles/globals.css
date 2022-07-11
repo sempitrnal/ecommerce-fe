@@ -45,7 +45,7 @@ a {
     @apply absolute left-0 flex justify-center w-full top-[47%] first-letter:items-center;
   }
   .cart__wrapper {
-    @apply w-[40%] bg-[#f1f1f1] overflow-y-scroll  min-h-screen relative;
+    @apply lg:w-[40%] w-full md:w-[80%] bg-[#f1f1f1] overflow-y-scroll  min-h-screen relative;
   }
   .cart-products__wrapper {
     @apply p-[2rem_3rem] min-h-[87.3vh];

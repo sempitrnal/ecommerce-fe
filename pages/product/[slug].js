@@ -17,7 +17,7 @@ export default function ProductDetails() {
     variables: { slug: query.slug },
   });
   const { data, fetching, error } = results;
-  console.log(data);
+
   if (fetching)
     return (
       <AnimatePresence>

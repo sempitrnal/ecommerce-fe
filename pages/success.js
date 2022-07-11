@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { useEffect } from "react";
 const stripe = require("stripe")(process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY);
 
 export async function getServerSideProps(params) {
@@ -30,6 +31,9 @@ const success = ({ order }) => {
       },
     },
   };
+  useEffect(() => {
+    localStorage.setItem("cart", []);
+  }, []);
   return (
     <motion.div
       variants={scaleUp}

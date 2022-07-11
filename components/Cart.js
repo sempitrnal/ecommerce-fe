@@ -41,6 +41,12 @@ function Cart() {
         layout
         className="cart__wrapper"
       >
+        <div
+          className="lg:hidden px-10 cursor-pointer pt-5 text-xl flex justify-end"
+          onClick={() => setShowCart((prev) => !prev)}
+        >
+          <GrClose />
+        </div>
         <div className="h-screen">
           {cartItems.length === 0 && (
             <motion.div
@@ -79,9 +85,9 @@ function Cart() {
               }}
               className="cart__summary"
             >
-              <p>
-                <span className="cart__subtotal">Subtotal</span>
-                {subtotal}
+              <p className="cart__subtotal">
+                <span className="cart__subtotal">Subtotal</span>₱{" "}
+                {subtotal.toLocaleString()}
               </p>
               <button
                 className="cart-summary__wrapper"

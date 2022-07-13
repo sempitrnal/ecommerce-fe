@@ -28,8 +28,8 @@ a {
   .center {
     @apply flex items-center justify-center h-screen;
   }
-  .product__details {
-    @apply flex flex-col items-center justify-center h-screen my-20 lg:flex-row sm:my-40 lg:my-0 gap-14;
+  .product {
+    @apply flex flex-col items-center justify-center h-[80vh] my-20 lg:flex-row sm:my-40 lg:my-0 gap-14 lg:mb-32;
   }
   .plus__quantity {
     @apply transition-colors duration-500 translate-y-[10%] text-sm text-[#1d1d1d]  hover:text-[#4f4f4f];

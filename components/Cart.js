@@ -46,7 +46,7 @@ function Cart() {
           duration: 0.2,
           type: "spring",
           damping: 20,
-          stiffness: 100,
+          stiffness: 140,
         }}
         layout
         className="cart__wrapper"
@@ -72,6 +72,7 @@ function Cart() {
               {cartItems.map((e) => {
                 return (
                   <CartItem
+                    slug={e.slug}
                     key={e.slug}
                     image={e.image.data.attributes.formats.thumbnail.url}
                     title={e.title}
@@ -83,51 +84,57 @@ function Cart() {
               })}
             </AnimatePresence>
           </div>
-          {cartItems.length > 0 && (
-            <motion.div
-              initial={{ y: 100 }}
-              animate={{ y: 0 }}
-              transition={{
-                delay: 0.35,
-                type: "spring",
-                stiffness: 100,
-                damping: 20,
-              }}
-              className="cart__summary"
-            >
-              <p className="cart__subtotal">
-                <span className="cart__subtotal">Subtotal</span>₱{" "}
-                {subtotal.toLocaleString()}
-              </p>
-              {!user && (
-                <div className=" flex items-center gap-5">
-                  <p
-                    className="text-white cursor-pointer hover:underline underline-offset-2"
-                    onClick={() => route.push("/api/auth/login")}
-                  >
-                    Login
-                  </p>
-                  <div className="w-[1px] h-7 bg-white"></div>
+          <AnimatePresence>
+            {cartItems.length > 0 && (
+              <motion.div
+                initial={{ y: 100 }}
+                animate={{ y: 0 }}
+                transition={{
+                  delay: 0.35,
+                  type: "spring",
+                  stiffness: 100,
+                  damping: 20,
+                }}
+                exit={{ y: 100 }}
+                className="cart__summary"
+              >
+                <p className="cart__subtotal">
+                  <span className="cart__subtotal">Subtotal</span>₱{" "}
+                  {subtotal.toLocaleString(undefined, {
+                    maximumFractionDigits: 2,
+                    minimumFractionDigits: 2,
+                  })}
+                </p>
+                {!user && (
+                  <div className=" flex items-center gap-5">
+                    <p
+                      className="text-white cursor-pointer hover:underline underline-offset-2"
+                      onClick={() => route.push("/api/auth/login")}
+                    >
+                      Login
+                    </p>
+                    <div className="w-[1px] h-7 bg-white"></div>
+                    <button
+                      className="cart-summary__wrapper"
+                      onClick={handleCheckout}
+                    >
+                      <p>Checkout as Guest</p>
+                      <FaArrowRight />
+                    </button>
+                  </div>
+                )}
+                {user && (
                   <button
                     className="cart-summary__wrapper"
                     onClick={handleCheckout}
                   >
-                    <p>Checkout as Guest</p>
+                    <p>Checkout</p>
                     <FaArrowRight />
                   </button>
-                </div>
-              )}
-              {user && (
-                <button
-                  className="cart-summary__wrapper"
-                  onClick={handleCheckout}
-                >
-                  <p>Checkout</p>
-                  <FaArrowRight />
-                </button>
-              )}
-            </motion.div>
-          )}
+                )}
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       </motion.div>
     </motion.div>

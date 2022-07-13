@@ -6,11 +6,11 @@ import { AnimatePresence, motion } from "framer-motion";
 const User = () => {
   const route = useRouter();
   const { openProfileDiv, toggleProfileDiv } = useStateContext();
-  const { user, error, isLoading } = useUser();
+  const { user } = useUser();
   return (
     <div>
       <div
-        className="flex flex-col justify-center items-center translate-y-[12%] cursor-pointer"
+        className="flex flex-col justify-center items-center translate-y-[8%] cursor-pointer"
         onClick={user ? toggleProfileDiv : () => route.push("/api/auth/login")}
       >
         {user ? (
@@ -33,7 +33,7 @@ const User = () => {
             transition={{
               type: "spring",
               damping: 20,
-              stiffness: 140,
+              stiffness: 150,
             }}
             className="absolute p-3 right-[10.5rem] bg-white shadow-[0px_0px_10px_#00000024] rounded-lg text-sm"
           >

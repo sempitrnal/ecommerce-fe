@@ -16,7 +16,7 @@ const success = ({ order }) => {
   console.log(order);
   const amount = order.amount_total / 100;
   const { customer_details, line_items } = order;
-  const { address, name, email } = customer_details;
+  const { address, email } = customer_details;
   const scaleUp = {
     hidden: {
       opacity: 0,

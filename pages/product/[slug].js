@@ -5,7 +5,7 @@ import { useStateContext } from "../../lib/context";
 //icons and motion
 import { FaPlus, FaMinus } from "react-icons/fa";
 import { ClipLoader } from "react-spinners";
-import { motion, AnimatePresence, AnimateSharedLayout } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import ProductMedia from "../../components/ProductMedia";
 import ProductMediaModal from "../../components/ProductMediaModal";
 import toast from "react-hot-toast";
@@ -49,7 +49,9 @@ export default function ProductDetails() {
   };
   //toast
   const addedProduct = (e) => {
-    toast.success(`Added ${e} to cart!`, {});
+    toast(`${title} added to your cart!`, {
+      icon: "🤙",
+    });
   };
 
   return (
@@ -68,7 +70,13 @@ export default function ProductDetails() {
         />
         <div className="flex flex-col w-[280px] sm:w-[400px] xl:w-[25rem]">
           <h1 className="text-4xl text-[#5a5a5a] mb-2">{title}</h1>
-          <p className="text-2xl font-bold text-[#3c3c3c] mb-5">₱ {price}</p>
+          <p className="text-2xl font-bold text-[#3c3c3c] mb-5">
+            ₱{" "}
+            {price.toLocaleString(undefined, {
+              minimumFractionDigits: 2,
+              maximumFractionDigits: 2,
+            })}
+          </p>
           <p className="text-[#ababab] mb-14">{description}</p>
           <div className="flex items-center mb-10">
             <p className="text-lg font-semibold mr-28">Quantity</p>

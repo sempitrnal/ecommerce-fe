@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useStateContext } from "../lib/context";
-function ProductMediaModal({ image }) {
+function ProductMediaModal() {
   const { productMedia, setProductMedia } = useStateContext();
   const close = (e) => {
     if (e.target.classList.contains("backdrop"))

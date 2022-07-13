@@ -3,7 +3,7 @@ const Product = ({ product }) => {
   const { title, price, image, slug } = product.attributes;
   const { small, medium, thumbnail } = image.data.attributes.formats;
   let formattedPrice = price.toFixed(2);
-  console.log(typeof formattedPrice);
+
   return (
     <Link href={`product/${slug}`}>
       <div className="flex flex-col overflow-hidden justify-end  shadow-[0px_0px_10px_#00000025] rounded-md ">

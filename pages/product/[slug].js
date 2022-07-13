@@ -8,9 +8,14 @@ import { ClipLoader } from "react-spinners";
 import { motion, AnimatePresence, AnimateSharedLayout } from "framer-motion";
 import ProductMedia from "../../components/ProductMedia";
 import ProductMediaModal from "../../components/ProductMediaModal";
+import toast from "react-hot-toast";
+import { useEffect } from "react";
 export default function ProductDetails() {
-  const { qty, qtyPlus, qtyMinus, onAdd, productMedia } = useStateContext();
-
+  const { qty, qtyPlus, qtyMinus, onAdd, productMedia, setQty } =
+    useStateContext();
+  useEffect(() => {
+    setQty(1);
+  }, []);
   const { query } = useRouter();
   const [results] = useQuery({
     query: GET_PRODUCT_QUERY,
@@ -42,8 +47,13 @@ export default function ProductDetails() {
       opacity: 1,
     },
   };
+  //toast
+  const addedProduct = (e) => {
+    toast.success(`Added ${e} to cart!`, {});
+  };
+
   return (
-    <motion.div>
+    <motion.div className="">
       <motion.div
         variants={fadeIn}
         initial="hidden"
@@ -81,17 +91,23 @@ export default function ProductDetails() {
           </div>
           <button
             className="add-to-cart"
-            onClick={() => onAdd(data.products.data[0].attributes, qty)}
+            onClick={() => {
+              onAdd(data.products.data[0].attributes, qty);
+              addedProduct(title);
+            }}
           >
             Add to cart
           </button>
         </div>
       </motion.div>
-      <AnimateSharedLayout>
-        <AnimatePresence>
-          {productMedia.isOpen && <ProductMediaModal />}
-        </AnimatePresence>
-        <div className="flex justify-center w-screen gap-3">
+
+      <AnimatePresence>
+        {productMedia.isOpen && <ProductMediaModal />}
+      </AnimatePresence>
+
+      <div className="flex flex-col w-[60%] justify-center mx-auto">
+        <h2 className="text-4xl font-semibold mb-5">Product Images</h2>
+        <div className="flex justify-center w-full py-5 gap-3 overflow-x-hidden">
           {prodMedia.map((e) => {
             return (
               <ProductMedia
@@ -102,7 +118,7 @@ export default function ProductDetails() {
             );
           })}
         </div>
-      </AnimateSharedLayout>
+      </div>
     </motion.div>
   );
 }

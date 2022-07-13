@@ -21,9 +21,12 @@ function ProductMediaModal({ image }) {
       className="fixed top-0 left-0 right-0 z-30 flex items-center justify-center w-full h-screen bg-[#00000088] backdrop"
       onClick={(e) => close(e)}
     >
-      <div className="flex justify-center object-cover w-auto h-[80%]">
+      <motion.div
+        layoutId={productMedia.hash}
+        className="flex justify-center object-cover w-auto h-[80%]"
+      >
         <img src={productMedia.url} alt="" />
-      </div>
+      </motion.div>
     </motion.div>
   );
 }

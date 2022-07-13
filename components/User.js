@@ -33,7 +33,7 @@ const User = () => {
             transition={{
               type: "spring",
               damping: 20,
-              stiffness: 130,
+              stiffness: 140,
             }}
             className="absolute p-3 right-[10.5rem] bg-white shadow-[0px_0px_10px_#00000024] rounded-lg text-sm"
           >

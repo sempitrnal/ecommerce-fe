@@ -16,7 +16,6 @@ a {
 
 * {
   box-sizing: border-box;
-  color: #333;
 }
 
 @layer components {
@@ -39,22 +38,22 @@ a {
     @apply p-2 transition-all duration-500 bg-gray-200 rounded-md hover:shadow-sm hover:bg-[#f3f3f3];
   }
   .backdrop {
-    @apply fixed right-0 left-0 h-screen top-0  w-full overflow-y-hidden z-30 bg-[#00000081] flex justify-end;
+    @apply fixed right-0 left-0 h-screen top-0  w-full overflow-hidden z-30 bg-[#00000081] flex justify-end;
   }
   .no__item {
     @apply absolute left-0 flex justify-center w-full top-[47%] first-letter:items-center;
   }
   .cart__wrapper {
-    @apply lg:w-[40%] w-full md:w-[80%] bg-[#f1f1f1] overflow-y-scroll  min-h-screen relative;
+    @apply lg:w-[40%] w-full md:w-[80%] bg-[#f1f1f1] overflow-y-scroll overflow-x-hidden  min-h-screen relative;
   }
   .cart-products__wrapper {
     @apply p-[2rem_3rem] min-h-[87.3vh];
   }
   .cart__summary {
-    @apply text-[#ffffff] items-center justify-between flex flex-col xs:flex-row gap-5 xs:gap-0 sticky bottom-0  bg-[#333] px-5 py-7 rounded-t-xl;
+    @apply text-[#ffffff] items-center justify-between flex flex-col xs:flex-row gap-5 xs:gap-0 sticky bottom-0  bg-[#333] px-5 py-8 rounded-t-xl;
   }
   .cart-summary__wrapper {
-    @apply flex items-center gap-3 justify-center text-[#333333d6] bg-[#fff] py-2 px-4  rounded-lg hover:bg-[#ffffffe6] transition-all duration-300 hover:translate-x-[-2px];
+    @apply flex items-center gap-3 justify-center text-[#333333d6] bg-[#fff] py-1 px-4  rounded-lg hover:bg-[#ffffffe6] transition-all duration-300 hover:translate-x-[-2px];
   }
   .cart__subtotal {
     @apply font-semibold mr-3 text-sm text-[#fff];

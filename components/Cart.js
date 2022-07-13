@@ -60,7 +60,10 @@ function Cart() {
       >
         <div
           className="lg:hidden px-10 cursor-pointer pt-5 text-xl flex justify-end"
-          onClick={() => setShowCart((prev) => !prev)}
+          onClick={() => {
+            setShowCart((prev) => !prev);
+            document.body.style.overflow = "auto";
+          }}
         >
           <GrClose />
         </div>

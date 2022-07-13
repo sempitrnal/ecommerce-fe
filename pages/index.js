@@ -5,9 +5,10 @@ import { PRODUCT_QUERY } from "../lib/query";
 import { ClipLoader } from "react-spinners";
 import { AnimatePresence, motion } from "framer-motion";
 import { useStateContext } from "../lib/context";
+import toast from "react-hot-toast";
 
 export default function Home() {
-  const { toggleProfileDiv, openProfileDiv } = useStateContext();
+  const { toggleProfileDiv, openProfileDiv, onAdd } = useStateContext();
   const [results] = useQuery({ query: PRODUCT_QUERY });
   const { data, fetching, error } = results;
   if (fetching)
@@ -40,11 +41,29 @@ export default function Home() {
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3 }}
-        className="min0h-screen py-[5rem]"
+        className="min-h-screen py-[5rem]"
       >
-        <div className="product__grid">
+        <div
+          className={`${
+            products.length < 5 ? "product__grid1" : "product__grid"
+          }`}
+        >
           {products.map((e) => (
-            <Product key={e.attributes.slug} product={e} />
+            <div className="flex flex-col gap-5">
+              <Product key={e.attributes.slug} product={e} />
+              <motion.button
+                whileTap={{ scale: 0.9 }}
+                className="lg:hidden text-xs flex justify-center bg-[#3a3a3a] py-1 px-3 rounded-md text-[#e6e6e6] w-24 h-5 items-center mx-auto"
+                onClick={() => {
+                  onAdd(e.attributes, 1);
+                  toast(`${e.attributes.title} added to your cart!`, {
+                    icon: "⚡️",
+                  });
+                }}
+              >
+                Add to cart
+              </motion.button>
+            </div>
           ))}
         </div>
       </motion.main>

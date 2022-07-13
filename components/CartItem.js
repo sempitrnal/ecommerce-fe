@@ -30,7 +30,7 @@ const CartItem = ({ image, title, price, quantity, product, slug }) => {
           <h3 className="text-xs">
             <span className="mr-5 font-semibold ">Quantity</span> {quantity}
           </h3>
-          <div className="flex text-[.6rem] rounded-sm translate-y-[0%] ">
+          <div className="flex text-[.8rem] rounded-sm translate-y-[0%] ">
             <button
               className=" border rounded-l-sm  border-[#afafaf] p-[.2rem]  hover:bg-slate-100 transition-colors duration-300"
               onClick={(e) => {

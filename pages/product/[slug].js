@@ -37,7 +37,7 @@ export default function ProductDetails() {
     data.products.data[0].attributes;
   const { large, medium, small, thumbnail } = image.data.attributes.formats;
   const prodMedia = media.data;
-
+  console.log(prodMedia);
   //motion variants
   const fadeIn = {
     hidden: {
@@ -55,7 +55,7 @@ export default function ProductDetails() {
   };
 
   return (
-    <motion.div className="">
+    <motion.div className="product_wrapper">
       <motion.div
         variants={fadeIn}
         initial="hidden"
@@ -64,11 +64,11 @@ export default function ProductDetails() {
         className="product"
       >
         <img
-          className="rounded-md transition-all delay-300 duration-300 w-[280px] h-[280px] sm:w-[400px] sm:h-[400px]  xl:w-[500px] xl:h-[500px] object-cover"
+          className="rounded-md transition-all delay-300 duration-300 w-full xs:w-[400px] sm:h-[400px]  xl:w-[500px] xl:h-[500px] object-cover"
           src={medium ? medium.url : small.url}
           alt={title}
         />
-        <div className="flex flex-col w-[280px] sm:w-[400px] xl:w-[25rem]">
+        <div className="flex flex-col w-full sm:w-[400px] xl:w-[25rem]">
           <h1 className="text-4xl text-[#5a5a5a] mb-2">{title}</h1>
           <p className="text-2xl font-bold text-[#3c3c3c] mb-5">
             ₱{" "}
@@ -78,9 +78,9 @@ export default function ProductDetails() {
             })}
           </p>
           <p className="text-[#ababab] mb-14">{description}</p>
-          <div className="flex items-center mb-10">
+          <div className="flex items-center mb-10 justify-between">
             <p className="text-lg font-semibold mr-28">Quantity</p>
-            <div className="flex items-center gap-10 ">
+            <div className="flex items-center xl:gap-10 gap-5 ">
               <FaMinus
                 onClick={qtyMinus}
                 className={`transition-colors duration-500 translate-y-[10%] text-sm
@@ -91,7 +91,7 @@ export default function ProductDetails() {
                   }
                   `}
               />
-              <p className="text-2xl w-[3rem] text-center">{qty}</p>
+              <p className="text sm xl:text-2xl w-[3rem] text-center">{qty}</p>
               <button onClick={qtyPlus}>
                 <FaPlus className="plus__quantity" />
               </button>
@@ -113,20 +113,22 @@ export default function ProductDetails() {
         {productMedia.isOpen && <ProductMediaModal />}
       </AnimatePresence>
 
-      <div className="flex flex-col w-[60%] justify-center mx-auto">
-        <h2 className="text-4xl font-semibold mb-5">Product Images</h2>
-        <div className="flex justify-center w-full py-5 gap-3 overflow-x-hidden">
-          {prodMedia.map((e) => {
-            return (
-              <ProductMedia
-                hash={e.attributes.formats.small.hash}
-                key={e.attributes.formats.small.hash}
-                url={e.attributes.formats.small.url}
-              />
-            );
-          })}
+      {prodMedia.length > 0 && (
+        <div className="flex flex-col w-[60%] justify-center mx-auto">
+          <h2 className="text-4xl font-semibold mb-5">Product Images</h2>
+          <div className="flex justify-center w-full py-5 gap-3 overflow-x-hidden">
+            {prodMedia.map((e) => {
+              return (
+                <ProductMedia
+                  hash={e.attributes.formats.small.hash}
+                  key={e.attributes.formats.small.hash}
+                  url={e.attributes.formats.small.url}
+                />
+              );
+            })}
+          </div>
         </div>
-      </div>
+      )}
     </motion.div>
   );
 }

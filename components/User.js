@@ -10,7 +10,7 @@ const User = () => {
   return (
     <div>
       <div
-        className="flex flex-col justify-center items-center translate-y-[8%] cursor-pointer"
+        className="flex flex-col justify-center items-center translate-y-[5%] cursor-pointer"
         onClick={user ? toggleProfileDiv : () => route.push("/api/auth/login")}
       >
         {user ? (
@@ -35,7 +35,7 @@ const User = () => {
               damping: 20,
               stiffness: 150,
             }}
-            className="absolute p-3 right-[10.5rem] bg-white shadow-[0px_0px_10px_#00000024] rounded-lg text-sm"
+            className="transition-[right] duration-200 delay-200 absolute p-3 right-[7rem] lg:right-[10.5rem] bg-white shadow-[0px_0px_10px_#00000024] rounded-lg text-sm"
           >
             <div
               className="flex  p-1 px-3 cursor-pointer hover:bg-gray-50 mb-1 transition-all duration-300 rounded-md"

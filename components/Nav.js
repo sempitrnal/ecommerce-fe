@@ -21,11 +21,15 @@ const Nav = () => {
   };
   return (
     <nav
-      className="sticky z-10 top-0 right-0 left-0 flex justify-between items-center px-[5rem] py-[1.5rem] bg-white shadow-lg"
+      className="sticky z-10 top-0 right-0 left-0 flex justify-between items-center lg:px-[5rem] py-[1.5rem] bg-white shadow-lg px-[1.5rem] transition-all duration-200 delay-200"
       onClick={openProfileDiv ? (e) => toggle(e) : null}
     >
       <AnimatePresence>{showCart && <Cart />}</AnimatePresence>
-      <Link href={"/"}>bo</Link>
+      <Link href={"/"}>
+        <p className="font-semibold cursor-pointer hover:text-gray-700 transition-colors duration-1000">
+          Magnus
+        </p>
+      </Link>
       <div className="flex items-center gap-5">
         <User />
         <button

@@ -30,10 +30,17 @@ function Cart() {
   return (
     <motion.div
       initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{
-        duration: 0.2,
+      animate={{
+        opacity: 1,
+        transition: {
+          duration: 0.2,
+        },
+      }}
+      exit={{
+        opacity: 0,
+        transition: {
+          duration: 0.1,
+        },
       }}
       onClick={(e) => toggleCart(e)}
       className="backdrop"
@@ -41,7 +48,7 @@ function Cart() {
       <motion.div
         initial={{ x: 600 }}
         animate={{ x: 0 }}
-        exit={{ x: 600 }}
+        exit={{ x: 600, transition: { duration: 0.1 } }}
         transition={{
           duration: 0.2,
           type: "spring",
@@ -67,7 +74,7 @@ function Cart() {
               <h1>No items in cart.</h1>
             </motion.div>
           )}
-          <div className="cart-products__wrapper">
+          <motion.div layout className="cart-products__wrapper">
             <AnimatePresence>
               {cartItems.map((e) => {
                 return (
@@ -83,7 +90,7 @@ function Cart() {
                 );
               })}
             </AnimatePresence>
-          </div>
+          </motion.div>
           <AnimatePresence>
             {cartItems.length > 0 && (
               <motion.div

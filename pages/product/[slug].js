@@ -61,10 +61,10 @@ export default function ProductDetails() {
         initial="hidden"
         animate="show"
         exit="hidden"
-        className="product__details"
+        className="product"
       >
         <img
-          className="rounded-md w-[280px] sm:w-[400px] xl:[500px]"
+          className="rounded-md transition-all delay-300 duration-300 w-[280px] h-[280px] sm:w-[400px] sm:h-[400px]  xl:w-[500px] xl:h-[500px] object-cover"
           src={medium ? medium.url : small.url}
           alt={title}
         />

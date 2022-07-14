@@ -19,7 +19,7 @@ a {
 }
 
 @layer components {
-  .product__grid1 {
+  .product__grid {
     @apply grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4 gap-5  w-[95%] xl:w-[80%] mx-auto mb-10;
   }
   .cart__quantity {

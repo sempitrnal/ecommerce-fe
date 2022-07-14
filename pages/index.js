@@ -43,11 +43,7 @@ export default function Home() {
         transition={{ duration: 0.3 }}
         className="min-h-screen py-[5rem]"
       >
-        <div
-          className={`${
-            products.length < 5 ? "product__grid1" : "product__grid"
-          }`}
-        >
+        <div className="product__grid">
           {products.map((e) => (
             <div className="flex flex-col gap-5">
               <Product key={e.attributes.slug} product={e} />

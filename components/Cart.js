@@ -32,6 +32,7 @@ function Cart() {
       initial={{ opacity: 0 }}
       animate={{
         opacity: 1,
+        rotate: 0.02,
         transition: {
           duration: 0.2,
         },
@@ -67,7 +68,7 @@ function Cart() {
         >
           <GrClose />
         </div>
-        <div className="h-screen">
+        <div className="">
           {cartItems.length === 0 && (
             <motion.div
               initial={{ opacity: 0, scale: 0 }}

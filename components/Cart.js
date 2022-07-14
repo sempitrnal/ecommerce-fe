@@ -98,6 +98,7 @@ function Cart() {
           <AnimatePresence>
             {cartItems.length > 0 && (
               <motion.div
+                layout
                 initial={{ y: 100 }}
                 animate={{ y: 0 }}
                 transition={{

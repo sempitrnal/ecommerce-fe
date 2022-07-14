@@ -17,11 +17,12 @@ a {
 * {
   box-sizing: border-box;
 }
-.cart-summary {
-  position: sticky;
-  position: -webkit-sticky;
-  position: -moz-sticky;
-  position: -o-sticky;
+@media screen and (max-width: 767px) {
+  _::-webkit-full-page-media,
+  _:future,
+  :root .safari_only {
+    padding-bottom: 65px;
+  }
 }
 @layer components {
   .product__grid {

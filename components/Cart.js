@@ -108,7 +108,7 @@ function Cart() {
                   damping: 20,
                 }}
                 exit={{ y: 100 }}
-                className="cart__summary"
+                className="cart__summary safari_only"
               >
                 <p className="cart__subtotal">
                   <span className="cart__subtotal">Subtotal</span>₱{" "}

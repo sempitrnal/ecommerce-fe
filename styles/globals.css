@@ -21,7 +21,7 @@ a {
   _::-webkit-full-page-media,
   _:future,
   :root .safari_only {
-    padding-bottom: 130px;
+    padding-bottom: 100px;
   }
 }
 @layer components {

@@ -10,6 +10,7 @@ import ProductMedia from "../../components/ProductMedia";
 import ProductMediaModal from "../../components/ProductMediaModal";
 import toast from "react-hot-toast";
 import { useEffect } from "react";
+import getStripe from "../../lib/getStripe";
 export default function ProductDetails() {
   const { qty, qtyPlus, qtyMinus, onAdd, productMedia, setQty } =
     useStateContext();
@@ -32,12 +33,12 @@ export default function ProductDetails() {
       </AnimatePresence>
     );
   if (error) return <p>oh shite {error.message}</p>;
-
+  const prod = data.products.data[0].attributes;
   const { title, price, image, description, slug, media } =
     data.products.data[0].attributes;
   const { large, medium, small, thumbnail } = image.data.attributes.formats;
   const prodMedia = media.data;
-  console.log(prodMedia);
+
   //motion variants
   const fadeIn = {
     hidden: {
@@ -53,7 +54,21 @@ export default function ProductDetails() {
       icon: "🤙",
     });
   };
-
+  const handleCheckout = async () => {
+    const stripe = await getStripe();
+    const res = await fetch("/api/stripe", {
+      method: "POST",
+      headers: { "Content-Type": "application//json" },
+      body: JSON.stringify([
+        {
+          ...prod,
+          quantity: qty,
+        },
+      ]),
+    });
+    const data = await res.json();
+    await stripe.redirectToCheckout({ sessionId: data.id });
+  };
   return (
     <motion.div className="product_wrapper">
       <motion.div
@@ -69,8 +84,8 @@ export default function ProductDetails() {
           alt={title}
         />
         <div className="flex flex-col w-full sm:w-[400px] xl:w-[25rem]">
-          <h1 className="text-4xl text-[#5a5a5a] mb-2">{title}</h1>
-          <p className="text-2xl font-bold text-[#3c3c3c] mb-5">
+          <h1 className="text-4xl text-[#2f2f2f] mb-2">{title}</h1>
+          <p className="text-2xl font-bold text-[#ff895b] mb-5">
             ₱{" "}
             {price.toLocaleString(undefined, {
               minimumFractionDigits: 2,
@@ -97,15 +112,20 @@ export default function ProductDetails() {
               </button>
             </div>
           </div>
-          <button
-            className="add-to-cart"
-            onClick={() => {
-              onAdd(data.products.data[0].attributes, qty);
-              addedProduct(title);
-            }}
-          >
-            Add to cart
-          </button>
+          <div className="flex w-full justify-between gap-5">
+            <button
+              className="add-to-cart"
+              onClick={() => {
+                onAdd(data.products.data[0].attributes, qty);
+                addedProduct(title);
+              }}
+            >
+              Add to cart
+            </button>
+            <button className="buy_now" onClick={handleCheckout}>
+              Buy now
+            </button>
+          </div>
         </div>
       </motion.div>
 

@@ -10,7 +10,7 @@ const CartItem = ({ image, title, price, quantity, product, slug }) => {
     <motion.div
       layout
       exit={{ opacity: 0, x: 100, transition: { duration: 0.1 } }}
-      className="flex items-center justify-between w-full  mb-7 bg-white p-[2rem_2rem] rounded-lg cursor-pointer hover:shadow-md transition-shadow duration-500"
+      className="flex items-center justify-between w-full  mb-7 bg-white p-[2rem_2rem] rounded-lg cursor-pointer hover:shadow-md transition-shadow duration-500 flex-wrap gap-5"
       onClick={() => {
         route.push(`/product/${slug}`);
         setShowCart(false);
@@ -26,7 +26,7 @@ const CartItem = ({ image, title, price, quantity, product, slug }) => {
         <h3 className="text-xs text-gray-500 mb-3">
           ₱ {price.toLocaleString(undefined, { minimumFractionDigits: 2 })}
         </h3>
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 flex-wrap">
           <h3 className="text-xs">
             <span className="mr-5 font-semibold ">Quantity</span> {quantity}
           </h3>

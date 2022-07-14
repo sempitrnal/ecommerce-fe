@@ -68,7 +68,7 @@ function Cart() {
         >
           <GrClose />
         </div>
-        <div className="">
+        <div className="min-h-screen">
           {cartItems.length === 0 && (
             <motion.div
               initial={{ opacity: 0, scale: 0 }}

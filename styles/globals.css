@@ -56,7 +56,7 @@ a {
     @apply p-[2rem_3rem] min-h-[90vh];
   }
   .cart__summary {
-    @apply text-[#ffffff] items-center justify-between flex flex-col xs:flex-row gap-5 xs:gap-0 sticky bottom-0  bg-[#333] px-5 py-8 rounded-t-xl;
+    @apply text-[#ffffff] items-center justify-between flex flex-col xs:flex-row gap-5 xs:gap-0 sticky bottom-0  bg-[#333] px-5 pt-8 pb-14 lg:pb-8 rounded-t-xl;
   }
   .cart-summary__wrapper {
     @apply flex items-center gap-3 justify-center text-[#333333d6] bg-[#fff] py-1 px-4  rounded-lg hover:bg-[#ffffffe6] transition-all duration-300 hover:translate-x-[-2px];

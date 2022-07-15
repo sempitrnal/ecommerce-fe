@@ -26,7 +26,7 @@ a {
 }
 @layer components {
   .product__grid {
-    @apply grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4 gap-5  w-[95%] xl:w-[80%] mx-auto mb-10;
+    @apply grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4 gap-2  w-[95%] xl:w-[80%] mx-auto mb-10;
   }
   .cart__quantity {
     @apply absolute w-3 h-3 rounded-[50%] bg-red-500 right-1 top-1 flex justify-center items-center  p-[.4rem];
@@ -62,7 +62,7 @@ a {
     @apply px-[1rem] sm:px-[3rem] pt-[2rem] pb-[5rem] xs:pb-[5rem] min-h-[90vh];
   }
   .cart__summary {
-    @apply text-[#ffffff] items-center justify-between flex flex-col xs:flex-row gap-5 xs:gap-0 sticky bottom-0  bg-[#333] px-5 py-6 rounded-t-xl z-50;
+    @apply text-[#ffffff] items-center justify-between flex flex-col xs:flex-row gap-5 xs:gap-0 sticky bottom-0  bg-[#333] px-5 py-7 rounded-t-xl z-50;
   }
   .cart-summary__wrapper {
     @apply flex items-center gap-3 justify-center text-[#333333d6] bg-[#fff] py-1 px-4  rounded-lg hover:bg-[#ffffffe6] transition-all duration-300 hover:translate-x-[-2px];

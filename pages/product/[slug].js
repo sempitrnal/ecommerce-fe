@@ -98,11 +98,11 @@ export default function ProductDetails() {
       exit={{ opacity: 0, transition: { delay: 0.5 } }}
     >
       <div
-        className="text-md my-10 flex gap-2 items-center cursor-pointer hover:text-[#888888] transition-all duration-500 w-[90%] lg:w-[80%] mx-auto"
+        className="text-xl lg:text-2xl my-10 flex gap-2 items-center cursor-pointer hover:text-[#888888] transition-all duration-500 w-[90%] lg:w-[80%] mx-auto"
         onClick={() => route.push("/")}
       >
         <BiArrowBack />
-        <p className="text-sm">Back</p>
+        <p className="text-lg lg:text-xl">Back</p>
       </div>
       <motion.div className="product">
         <img
@@ -110,8 +110,8 @@ export default function ProductDetails() {
           src={medium ? medium.url : small.url}
           alt={title}
         />
-        <div className="flex flex-col  xs:w-[400px] xl:w-[25rem] mb-[5rem] w-full p-3 text-sm transition-all duration-300 delay-300">
-          <h1 className="text-xl lg:text-4xl text-[#2f2f2f] mb-2">{title}</h1>
+        <div className="flex flex-col  xs:w-[400px] xl:w-[25rem] mb-[5rem] w-full p-3 xs:p-0 text-sm transition-all duration-300 delay-300">
+          <h1 className="text-2xl lg:text-4xl text-[#2f2f2f] mb-2">{title}</h1>
           <p className="text-lg lg:text-2xl font-bold text-[#ff895b] mb-5">
             ₱{" "}
             {price.toLocaleString(undefined, {
@@ -119,7 +119,7 @@ export default function ProductDetails() {
               maximumFractionDigits: 2,
             })}
           </p>
-          <p className="text-[#ababab] text-xs lg:text-sm mb-14">
+          <p className="text-[#ababab] text-xm lg:text-sm mb-14">
             {description}
           </p>
           <div className="flex items-center mb-10 justify-between">
@@ -163,9 +163,11 @@ export default function ProductDetails() {
       </AnimatePresence>
 
       {prodMedia.length > 0 && (
-        <div className="flex flex-col w-[60%] justify-center mx-auto">
-          <h2 className="text-4xl font-semibold mb-5">Product Images</h2>
-          <div className="flex justify-center w-full py-5 gap-3 overflow-x-hidden">
+        <div className="flex flex-col w-[80%] justify-center mx-auto">
+          <h2 className="text-lg lg:text-2xl font-semibold mb-5">
+            Product Images
+          </h2>
+          <div className="flex flex-wrap justify-center w-full py-5 gap-3 overflow-x-hidden">
             {prodMedia.map((e) => {
               return (
                 <ProductMedia

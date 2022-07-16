@@ -38,7 +38,7 @@ a {
     @apply w-full mx-auto min-h-screen flex flex-col;
   }
   .product {
-    @apply flex flex-col items-center justify-center   md:flex-row gap-5 lg:gap-52 lg:mb-32;
+    @apply flex flex-col items-center justify-center   md:flex-row gap-5 lg:gap-52 md:mb-32;
   }
   .plus__quantity {
     @apply transition-colors duration-500 translate-y-[10%] text-sm text-[#1d1d1d]  hover:text-[#4f4f4f];

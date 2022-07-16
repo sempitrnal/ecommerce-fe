@@ -6,18 +6,10 @@ import { useState, useEffect } from "react";
 const Product = ({ product }) => {
   const { title, price, image, slug } = product.attributes;
   const { small } = image.data.attributes.formats;
-  const { onAdd } = useStateContext();
-  const [width, setWidth] = useState(window.innerWidth);
-  useEffect(() => {
-    const watch = () => {
-      setWidth(window.innerWidth);
-    };
-    window.addEventListener("resize", watch);
-  }, []);
-  console.log(width);
+
   return (
     <Link href={`product/${slug}`}>
-      <div className="flex flex-col overflow-hidden justify-end   rounded-[.25rem] lg:h-[50vh]">
+      <div className="flex flex-col overflow-hidden justify-end   rounded-[.25rem] lg:h-[50vh] aspect-[2/3] lg:aspect-auto">
         <img
           src={small.url}
           alt={small.name}

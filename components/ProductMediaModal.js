@@ -23,9 +23,9 @@ function ProductMediaModal() {
     >
       <motion.div
         layoutId={productMedia.hash}
-        className="flex justify-center object-cover w-auto h-[80%]"
+        className="flex justify-center object-cover "
       >
-        <img src={productMedia.url} alt="" />
+        <img src={productMedia.url} alt="" className="object-cover" />
       </motion.div>
     </motion.div>
   );

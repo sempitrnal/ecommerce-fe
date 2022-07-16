@@ -122,38 +122,42 @@ export default function ProductDetails() {
           <p className="text-[#ababab] text-xm lg:text-sm mb-14">
             {description}
           </p>
-          <div className="flex items-center mb-10 justify-between">
-            <p className="text-lg font-semibold mr-28">Quantity</p>
-            <div className="flex items-center xl:gap-10 xs:gap-5  w-full justify-end">
-              <FaMinus
-                onClick={qtyMinus}
-                className={`transition-colors duration-500 translate-y-[10%] text-sm
+          <div className="flex flex-col px-5 lg:px-0">
+            <div className="flex items-center mb-10 justify-between">
+              <p className="text-lg font-semibold mr-28">Quantity</p>
+              <div className="flex items-center xl:gap-10 xs:gap-5  w-full justify-end">
+                <FaMinus
+                  onClick={qtyMinus}
+                  className={`transition-colors duration-500 translate-y-[10%] text-sm
                   ${
                     qty === 1
                       ? "text-gray-200"
                       : "text-[#232323] hover:text-[#4f4f4f] cursor-pointer"
                   }
                   `}
-              />
-              <p className="text sm xl:text-2xl w-[3rem] text-center">{qty}</p>
-              <button onClick={qtyPlus}>
-                <FaPlus className="plus__quantity" />
+                />
+                <p className="text sm xl:text-2xl w-[3rem] text-center">
+                  {qty}
+                </p>
+                <button onClick={qtyPlus}>
+                  <FaPlus className="plus__quantity" />
+                </button>
+              </div>
+            </div>
+            <div className="flex w-full justify-between gap-5">
+              <button
+                className="add-to-cart"
+                onClick={() => {
+                  onAdd(data.products.data[0].attributes, qty);
+                  addedProduct(title);
+                }}
+              >
+                Add to cart
+              </button>
+              <button className="buy_now" onClick={handleCheckout}>
+                Buy now
               </button>
             </div>
-          </div>
-          <div className="flex w-full justify-between gap-5">
-            <button
-              className="add-to-cart"
-              onClick={() => {
-                onAdd(data.products.data[0].attributes, qty);
-                addedProduct(title);
-              }}
-            >
-              Add to cart
-            </button>
-            <button className="buy_now" onClick={handleCheckout}>
-              Buy now
-            </button>
           </div>
         </div>
       </motion.div>

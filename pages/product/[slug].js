@@ -98,31 +98,33 @@ export default function ProductDetails() {
       exit={{ opacity: 0, transition: { delay: 0.5 } }}
     >
       <div
-        className="text-2xl mt-10 flex gap-4 items-center cursor-pointer hover:text-[#888888] transition-all duration-500"
+        className="text-md my-10 flex gap-2 items-center cursor-pointer hover:text-[#888888] transition-all duration-500 w-[90%] lg:w-[80%] mx-auto"
         onClick={() => route.push("/")}
       >
         <BiArrowBack />
-        <p className="text-lg">Back</p>
+        <p className="text-sm">Back</p>
       </div>
       <motion.div className="product">
         <img
-          className="rounded-md transition-all delay-300 duration-300 w-full xs:w-[400px] sm:h-[400px]  xl:w-[500px] xl:h-[500px] object-cover"
+          className="xs:rounded-md transition-all delay-300 duration-300 w-full h-[400px] xs:w-[400px] sm:h-[400px]  xl:w-[500px] xl:h-[500px] object-cover "
           src={medium ? medium.url : small.url}
           alt={title}
         />
-        <div className="flex flex-col w-full sm:w-[400px] xl:w-[25rem]">
-          <h1 className="text-4xl text-[#2f2f2f] mb-2">{title}</h1>
-          <p className="text-2xl font-bold text-[#ff895b] mb-5">
+        <div className="flex flex-col  xs:w-[400px] xl:w-[25rem] mb-[5rem] w-full p-3 text-sm transition-all duration-300 delay-300">
+          <h1 className="text-xl lg:text-4xl text-[#2f2f2f] mb-2">{title}</h1>
+          <p className="text-lg lg:text-2xl font-bold text-[#ff895b] mb-5">
             ₱{" "}
             {price.toLocaleString(undefined, {
               minimumFractionDigits: 2,
               maximumFractionDigits: 2,
             })}
           </p>
-          <p className="text-[#ababab] mb-14">{description}</p>
+          <p className="text-[#ababab] text-xs lg:text-sm mb-14">
+            {description}
+          </p>
           <div className="flex items-center mb-10 justify-between">
             <p className="text-lg font-semibold mr-28">Quantity</p>
-            <div className="flex items-center xl:gap-10 gap-5 ">
+            <div className="flex items-center xl:gap-10 xs:gap-5  w-full justify-end">
               <FaMinus
                 onClick={qtyMinus}
                 className={`transition-colors duration-500 translate-y-[10%] text-sm

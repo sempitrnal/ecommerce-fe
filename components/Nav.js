@@ -30,6 +30,9 @@ const Nav = () => {
           Magnus
         </p>
       </Link>
+      <Link href={"/product/hello"}>
+        <p>Hello</p>
+      </Link>
       <div className="flex items-center gap-5">
         <User />
         <button
